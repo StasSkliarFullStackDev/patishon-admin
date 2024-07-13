@@ -23,11 +23,11 @@ import {toaster} from "../../utils/Toaster";
 
 const Door = () => {
     const [doors, setDoors] = React.useState()
-    const [doorCategory, setDoorCategory] = React.useState('hinged');
-    const [doorType, setDoorType] = React.useState('single');
-    const [typeOfOpening, setTypeOfOpening] = React.useState('push');
-    const [directionOfOpening, setDirectionOfOpening] = React.useState('left');
-    const [handlePosition, setHandlePosition] = React.useState('left');
+    const [doorCategory, setDoorCategory] = React.useState();
+    const [doorType, setDoorType] = React.useState();
+    const [typeOfOpening, setTypeOfOpening] = React.useState();
+    const [directionOfOpening, setDirectionOfOpening] = React.useState();
+    const [handlePosition, setHandlePosition] = React.useState();
 
     const [doorSize, setDoorSize] = React.useState('100');
     const [doorPrice, setDoorPrice] = React.useState('1000');
@@ -38,17 +38,43 @@ const Door = () => {
             setDoors(response.data.data)
         } catch (error) {
             console.log(error)
+            toaster("Error occurred", 'error');
         }
     }
 
-    const createDoor = async () => {
+    const createDoor = async (e) => {
+        console.log(e)
+        e.preventDefault();
+
+        if (!doorCategory || !doorType || !doorSize || !doorPrice) {
+            toaster("Please fill out all required fields.", 'error');
+            return;
+        }
+
+        if (doorCategory === 'hinged' && !typeOfOpening) {
+            toaster("Please fill out the type of opening for hinged doors.", 'error');
+            return;
+        }
+
+        if (doorCategory === 'sliding' && doorType === 'single' && !directionOfOpening) {
+            toaster("Please fill out the direction of opening for single sliding doors.", 'error');
+            return;
+        }
+
+        if ((doorCategory === 'hinged' && doorType === 'single') || (doorCategory === 'sliding' && doorType === 'single')) {
+            if (!handlePosition) {
+                toaster("Please fill out the handle position.", 'error');
+                return;
+            }
+        }
+
         try {
             await axios.post(appconstant.SERVER_URL + 'createDoor', {
                 doorCategory,
                 doorType,
-                typeOfOpening,
-                directionOfOpening,
-                handlePosition,
+                typeOfOpening: (doorCategory === 'hinged') ? typeOfOpening : null,
+                directionOfOpening: ((doorCategory === 'sliding') && (doorType === 'single')) ? directionOfOpening : null,
+                handlePosition: (((doorCategory === 'hinged') && (doorType === 'single')) || ((doorCategory === 'sliding') && (doorType === 'single'))) ? handlePosition : null,
                 doorSize,
                 doorPrice
             })
@@ -56,6 +82,7 @@ const Door = () => {
             await getDoors()
         } catch (error) {
             console.log(error)
+            toaster("Error occurred", 'error');
         }
     }
 
@@ -66,6 +93,7 @@ const Door = () => {
             await getDoors()
         } catch (error) {
             console.log(error)
+            toaster("Error occurred", 'error');
         }
     }
 
@@ -90,10 +118,14 @@ const Door = () => {
                         <h6 className="text-white text-capitalize ps-3">{appconstant.door}</h6>
                     </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 20, padding: 20, maxWidth: 500, marginBottom: 30 }}>
-                        <FormControl>
+                    <form
+                        onSubmit={(e) => createDoor(e)}
+                        style={{ display: 'flex', flexDirection: 'column', gap: 20, padding: 20, maxWidth: 500, marginBottom: 30 }}
+                    >
+                        <FormControl required>
                             <FormLabel id="demo-radio-buttons-group-label">Door Category</FormLabel>
                             <RadioGroup
+                                required
                                 name="doorCategory"
                                 value={doorCategory}
                                 onChange={(e) => setDoorCategory(e.target.value)}
@@ -103,9 +135,10 @@ const Door = () => {
                             </RadioGroup>
                         </FormControl>
 
-                        <FormControl>
+                        <FormControl required>
                             <FormLabel id="demo-radio-buttons-group-label">Door Type</FormLabel>
                             <RadioGroup
+                                required
                                 name="doorType"
                                 value={doorType}
                                 onChange={(e) => setDoorType(e.target.value)}
@@ -116,10 +149,11 @@ const Door = () => {
                         </FormControl>
 
                         {
-                            doorCategory === 'hinged' &&
-                            <FormControl>
+                            (doorCategory === 'hinged') &&
+                            <FormControl required>
                                 <FormLabel id="demo-radio-buttons-group-label">Type of opening</FormLabel>
                                 <RadioGroup
+                                    required
                                     name="typeOfOpening"
                                     value={typeOfOpening}
                                     onChange={(e) => setTypeOfOpening(e.target.value)}
@@ -131,10 +165,11 @@ const Door = () => {
                         }
 
                         {
-                            doorCategory === 'sliding' && doorType === 'single' &&
-                            <FormControl>
+                            (doorCategory === 'sliding' && doorType === 'single') &&
+                            <FormControl required>
                                 <FormLabel id="demo-radio-buttons-group-label">Direction of opening</FormLabel>
                                 <RadioGroup
+                                    required
                                     name="directionOfOpening"
                                     value={directionOfOpening}
                                     onChange={(e) => setDirectionOfOpening(e.target.value)}
@@ -146,10 +181,11 @@ const Door = () => {
                         }
 
                         {
-                            doorCategory === 'hinged' && doorType === 'single' &&
-                            <FormControl>
+                            ((doorCategory === 'hinged' && doorType === 'single') || (doorCategory === 'sliding' && doorType === 'single')) &&
+                            <FormControl required>
                                 <FormLabel id="demo-radio-buttons-group-label">Handle Position</FormLabel>
                                 <RadioGroup
+                                    required
                                     name="directionOfOpening"
                                     value={handlePosition}
                                     onChange={(e) => setHandlePosition(e.target.value)}
@@ -162,7 +198,7 @@ const Door = () => {
 
                         <hr></hr>
 
-                        <FormControl>
+                        <FormControl required>
                             <TextField
                                 label={"Door size"}
                                 type={"number"}
@@ -172,7 +208,7 @@ const Door = () => {
                             />
                         </FormControl>
 
-                        <FormControl>
+                        <FormControl required>
                             <TextField
                                 label={"Door price"}
                                 type="number"
@@ -182,12 +218,12 @@ const Door = () => {
                         </FormControl>
 
                         <Button
+                            type="submit"
                             variant="contained"
-                            onClick={() => createDoor()}
                         >
                             Add Door
                         </Button>
-                    </div>
+                    </form>
 
 
 
