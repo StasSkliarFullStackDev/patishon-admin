@@ -48,19 +48,9 @@ const ConfigurationManagement = () => {
               text={"Frames and Color"}
             />
             <LinkFn
-              destination={"/doorChannel"}
-              img={images.doorchannel}
-              text={"Door Channel"}
-            />
-            <LinkFn
               destination={"/doorGlass"}
               img={images.doorglass}
               text={"Door Glass"}
-            />
-            <LinkFn
-              destination={"/doorCategoryAndHinges"}
-              img={images.door}
-              text={" Door Category and  Hinges"}
             />
             <LinkFn
               destination={"/handles"}
@@ -68,6 +58,12 @@ const ConfigurationManagement = () => {
               text={"Handles"}
             />
             <LinkFn destination={"/film"} img={images.films2} text={"Film"} />
+
+            <LinkFn
+                destination={"/door"}
+                img={images.door}
+                text={"Door"}
+            />
           </div>
         </div>
       </div>

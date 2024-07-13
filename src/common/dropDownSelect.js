@@ -14,7 +14,7 @@ export const DropDownSelect = props => {
   return (
     <div>
     <select onChange={onChange} placeholder={placeholder} className={className}>
-      {data?.map((value,index)=><option key={index} value={value._id} >{value.size}</option>)}
+      {data?.map((item,index)=><option key={index} value={item.value} >{item.label}</option>)}
      </select>
       {<span className='login-error'>{error ? error : ''}</span>}
     </div>

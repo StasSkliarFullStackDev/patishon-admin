@@ -44,6 +44,10 @@ section.ant-layout.ant-layout-has-sider .ant-layout-sider {
   border-radius: 8px;
 }
 
+.content-ep {
+  padding: 50px 15px;
+}
+
 h6.text-white.text-capitalize.ps-3 {
   font-weight: 400;
   font-size: 18px;

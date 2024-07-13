@@ -65,6 +65,7 @@ const appconstant = {
   rightPannel: "Per Pannel Size Right (mm)",
   frame: "Frame Type",
   doorChannel: "Door Channel",
+  door: "Door",
   doorGlass: "Door Glass",
   doorCategoryHinges: "Door Category/Hinges",
   handle: "Handle Type",
