@@ -36,7 +36,6 @@ const Door = () => {
         try {
             const response = await axios.get(appconstant.SERVER_URL + 'doorList')
             setDoors(response.data.data)
-            toaster("Created Successfully");
         } catch (error) {
             console.log(error)
         }
@@ -53,6 +52,7 @@ const Door = () => {
                 doorSize,
                 doorPrice
             })
+            toaster("Created Successfully");
             await getDoors()
         } catch (error) {
             console.log(error)
@@ -223,7 +223,7 @@ const Door = () => {
                                         <TableCell>{row.doorPrice}</TableCell>
                                         <TableCell>
                                             <DeleteIcon
-                                                color="error"
+                                                cursor={'pointer'}
                                                 onClick={() => removeDoor(row._id)}
                                             />
                                         </TableCell>
