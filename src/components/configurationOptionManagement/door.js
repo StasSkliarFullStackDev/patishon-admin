@@ -133,7 +133,7 @@ const Door = () => {
                         {
                             doorCategory === 'sliding' && doorType === 'single' &&
                             <FormControl>
-                                <FormLabel id="demo-radio-buttons-group-label">Type of opening</FormLabel>
+                                <FormLabel id="demo-radio-buttons-group-label">Direction of opening</FormLabel>
                                 <RadioGroup
                                     name="directionOfOpening"
                                     value={directionOfOpening}
