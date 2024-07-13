@@ -202,9 +202,9 @@ const Door = () => {
                                     <TableCell>Door Type</TableCell>
                                     <TableCell>Type Of Opening</TableCell>
                                     <TableCell>Direction Of Opening</TableCell>
+                                    <TableCell>Handle Position</TableCell>
                                     <TableCell>Door Size</TableCell>
                                     <TableCell>Door Price</TableCell>
-                                    <TableCell>Handle Position</TableCell>
                                     <TableCell>Actions</TableCell>
                                 </TableRow>
                             </TableHead>
