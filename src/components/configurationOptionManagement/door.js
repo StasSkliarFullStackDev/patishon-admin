@@ -61,7 +61,7 @@ const Door = () => {
             return;
         }
 
-        if ((doorCategory === 'hinged' && doorType === 'single') || (doorCategory === 'sliding' && doorType === 'single')) {
+        if (doorCategory === 'hinged' && doorType === 'single') {
             if (!handlePosition) {
                 toaster("Please fill out the handle position.", 'error');
                 return;
@@ -74,7 +74,7 @@ const Door = () => {
                 doorType,
                 typeOfOpening: (doorCategory === 'hinged') ? typeOfOpening : null,
                 directionOfOpening: ((doorCategory === 'sliding') && (doorType === 'single')) ? directionOfOpening : null,
-                handlePosition: (((doorCategory === 'hinged') && (doorType === 'single')) || ((doorCategory === 'sliding') && (doorType === 'single'))) ? handlePosition : null,
+                handlePosition: ((doorCategory === 'hinged') && (doorType === 'single')) ? handlePosition : null,
                 doorSize,
                 doorPrice
             })
@@ -181,7 +181,7 @@ const Door = () => {
                         }
 
                         {
-                            ((doorCategory === 'hinged' && doorType === 'single') || (doorCategory === 'sliding' && doorType === 'single')) &&
+                            (doorCategory === 'hinged' && doorType === 'single') &&
                             <FormControl required>
                                 <FormLabel id="demo-radio-buttons-group-label">Handle Position</FormLabel>
                                 <RadioGroup
