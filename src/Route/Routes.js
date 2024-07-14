@@ -33,6 +33,7 @@ import EditHandelPrice from "../components/configurationOptionManagement/editHan
 import EditFilmDetails from "../components/configurationOptionManagement/editFilmDetails";
 import ToleranceManagement from "../components/toleranceManagement";
 import Door from "../components/configurationOptionManagement/door";
+import GlassCovering from "../components/configurationOptionManagement/glassCovering";
 
 const RoutesNew = () => {
   return (
@@ -64,6 +65,7 @@ const RoutesNew = () => {
           <Route path="/film" element={<Film />} />
           <Route path="/doorGlass" element={<DoorGlass />} />
           <Route path="/door" element={<Door />} />
+          <Route path="/glassCovering" element={<GlassCovering />} />
           <Route path="/editDoorGlass" element={<EditDoorGlass />} />
           <Route path="/doorChannel" element={<DoorChannel />} />
           <Route path="/editSingleDoor" element={<EditSingleDoor />} />

@@ -1,10 +1,12 @@
+import GlassCovering from "../components/configurationOptionManagement/glassCovering";
+
 const appconstant = {
   // SERVER_URL: "http://192.168.3.176:3005/api/v1/admin/", //local server
   // ImageUrl: "http://192.168.3.176:3005/", //local server
   // SERVER_URL: "http://192.168.3.174:3002/api/v1/admin/", //local server
   // ImageUrl: "http://192.168.3.174:3002/", //local server
 
-  SERVER_URL: "https://patishon2-9a953cfa7090.herokuapp.com/api/v1/admin/", //Dell server
+  SERVER_URL: "http://localhost:3002/api/v1/admin/", //Dell server
   ImageUrl: "https://patishon2-9a953cfa7090.herokuapp.com/",
   changepassword: "Change Password",
   Oldpassword: "Old Password",
@@ -66,6 +68,7 @@ const appconstant = {
   frame: "Frame Type",
   doorChannel: "Door Channel",
   door: "Door",
+  glassCovering: "Glass Covering",
   doorGlass: "Door Glass",
   doorCategoryHinges: "Door Category/Hinges",
   handle: "Handle Type",

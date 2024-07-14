@@ -48,9 +48,9 @@ const ConfigurationManagement = () => {
               text={"Frames and Color"}
             />
             <LinkFn
-              destination={"/doorGlass"}
+              destination={"/glassCovering"}
               img={images.doorglass}
-              text={"Door Glass"}
+              text={"Glass Covering"}
             />
             <LinkFn
               destination={"/handles"}
