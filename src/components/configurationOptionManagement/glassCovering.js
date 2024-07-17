@@ -79,7 +79,7 @@ const GlassCovering = () => {
                         <h3 style={{width: 120}}>Clear</h3>
                         <FormControl required>
                             <TextField
-                                label="Price"
+                                label="Price (per mm)"
                                 type="number"
                                 variant="outlined"
                                 size="small"
@@ -102,7 +102,7 @@ const GlassCovering = () => {
                         <h3 style={{width: 120}}>Etched</h3>
                         <FormControl required>
                             <TextField
-                                label="Price"
+                                label="Price (per mm)"
                                 type="number"
                                 variant="outlined"
                                 size="small"
@@ -125,7 +125,7 @@ const GlassCovering = () => {
                         <h3 style={{width: 120}}>Reeded Glass</h3>
                         <FormControl required>
                             <TextField
-                                label="Price"
+                                label="Price (per mm)"
                                 type="number"
                                 variant="outlined"
                                 size="small"
@@ -148,7 +148,7 @@ const GlassCovering = () => {
                         <h3 style={{width: 120}}>Rice Paper</h3>
                         <FormControl required>
                             <TextField
-                                label="Price"
+                                label="Price (per mm)"
                                 type="number"
                                 variant="outlined"
                                 size="small"
