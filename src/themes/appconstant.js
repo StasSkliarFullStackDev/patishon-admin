@@ -7,7 +7,7 @@ const appconstant = {
   // ImageUrl: "http://192.168.3.174:3002/", //local server
 
   SERVER_URL: "https://api.patishon.com/api/v1/admin/", //Dell server
-  ImageUrl: "https://patishon2-9a953cfa7090.herokuapp.com/",
+  ImageUrl: "https://api.patishon.com/",
   changepassword: "Change Password",
   Oldpassword: "Old Password",
   NewPassword: "New Password",
