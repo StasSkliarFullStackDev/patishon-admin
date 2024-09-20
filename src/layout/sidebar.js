@@ -10,7 +10,7 @@ import {
 import images from "../themes/appImage";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome'
 import { faBars, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
-import { HomeOutlined, LayoutOutlined, SettingOutlined, ShoppingOutlined } from '@ant-design/icons';
+import {HomeOutlined, LayoutOutlined, LogoutOutlined, SettingOutlined, ShoppingOutlined} from '@ant-design/icons';
 
 const { Sider } = Layout;
 const Sidebar = (props) => {
@@ -22,6 +22,8 @@ const Sidebar = (props) => {
   const text11 = <span>Order Management</span>;
   const text2 = <span>Tolerance Management</span>;
   const onMenuClick = (e) => {
+    if (e.key === '/logout') logout();
+
     navigate(e.key)
     return window.innerWidth < 767 ? props.handlewClick() : ''
   };
@@ -127,15 +129,29 @@ const Sidebar = (props) => {
       type,
     };
   }
-  <Tooltip placement="bottom" title={text}>
-    <Button>Bottom</Button>
-  </Tooltip>
+
+  const logout = () => {
+    const deleteCookie = (name) => {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    };
+
+    deleteCookie('isAuthenticated');
+
+    setTimeout(() => {
+      navigate('/login')
+    }, 10)
+  };
 
   const items = [
     getItem('Product Management', '/productManagement', <Tooltip placement='right' title={props.isVisible ? text : ''}><HomeOutlined /></Tooltip>),
     getItem('Configuration Management', '/config', <Tooltip placement='right' title={props.isVisible ? text1 : ''}><LayoutOutlined /></Tooltip>),
     getItem('Tolerance Management', '/toleranceManagement', <Tooltip placement='right' title={props.isVisible ? text2 : ''}><SettingOutlined /></Tooltip>),
     getItem('Order Management', '/orderManagement', <Tooltip placement='right' title={props.isVisible ? text11 : ''}><ShoppingOutlined /></Tooltip>),
+    getItem(
+        'Logout',
+        '/logout',
+        <LogoutOutlined onClick={() => logout()} />
+    )
   ];
 
   return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   Routes,
   Route,
@@ -34,11 +34,33 @@ import EditFilmDetails from "../components/configurationOptionManagement/editFil
 import ToleranceManagement from "../components/toleranceManagement";
 import Door from "../components/configurationOptionManagement/door";
 import GlassCovering from "../components/configurationOptionManagement/glassCovering";
+import Login from "../components/login";
 
 const RoutesNew = () => {
+  const getCookie = (name) => {
+    const nameEQ = `${name}=`;
+    const cookiesArray = document.cookie.split(';');
+    for (let i = 0; i < cookiesArray.length; i++) {
+      let cookie = cookiesArray[i].trim();
+      if (cookie.indexOf(nameEQ) === 0) {
+        return cookie.substring(nameEQ.length, cookie.length);
+      }
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    const isAuthenticated = getCookie('isAuthenticated');
+
+    if (!isAuthenticated && window.location.pathname !== '/login') {
+      window.location.href = '/login';
+    }
+  }, []);
+
   return (
     <div>
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate to={"productManagement"} />} />
         <Route path="/" element={<MainLayout />}>
           <Route path="/productManagement" element={<ProductManagement />} />
