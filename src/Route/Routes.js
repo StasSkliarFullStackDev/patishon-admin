@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {
   Routes,
   Route,
-  Navigate,
+  Navigate, useNavigate,
 } from "react-router-dom";
 
 // components
@@ -37,6 +37,8 @@ import GlassCovering from "../components/configurationOptionManagement/glassCove
 import Login from "../components/login";
 
 const RoutesNew = () => {
+  const navigate = useNavigate();
+
   const getCookie = (name) => {
     const nameEQ = `${name}=`;
     const cookiesArray = document.cookie.split(';');
@@ -53,7 +55,7 @@ const RoutesNew = () => {
     const isAuthenticated = getCookie('isAuthenticated');
 
     if (!isAuthenticated && window.location.pathname !== '/login') {
-      window.location.href = '/login';
+      navigate('/login');
     }
   }, []);
 
