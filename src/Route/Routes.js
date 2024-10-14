@@ -37,8 +37,6 @@ import GlassCovering from "../components/configurationOptionManagement/glassCove
 import Login from "../components/login";
 
 const RoutesNew = () => {
-  const navigate = useNavigate();
-
   const getCookie = (name) => {
     const nameEQ = `${name}=`;
     const cookiesArray = document.cookie.split(';');
@@ -55,7 +53,7 @@ const RoutesNew = () => {
     const isAuthenticated = getCookie('isAuthenticated');
 
     if (!isAuthenticated && window.location.pathname !== '/login') {
-      navigate('/login');
+      window.location.href = '/sign-in';
     }
   }, []);
 
