@@ -53,7 +53,7 @@ const RoutesNew = () => {
     const isAuthenticated = getCookie('isAuthenticated');
 
     if (!isAuthenticated && window.location.pathname !== '/login') {
-      window.location.href = '/sign-in';
+      window.location.href = '/login';
     }
   }, []);
 
