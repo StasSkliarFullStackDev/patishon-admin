@@ -6,7 +6,7 @@ const appconstant = {
   // SERVER_URL: "http://192.168.3.174:3002/api/v1/admin/", //local server
   // ImageUrl: "http://192.168.3.174:3002/", //local server
 
-  AUTH_LOGIN: "sales@patishon.com",
+  AUTH_LOGIN: "jago.ker@patishon.com",
   AUTH_PASSWORD: "yIz3iRaptK50",
 
   SERVER_URL: process.env.REACT_APP_DEV_API_URL || "https://api.patishon.com/api/v1/admin/", //Dell server
